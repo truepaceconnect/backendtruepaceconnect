@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { initializeApp } from './FirebaseAdmin.js';
 import CreatorRoute from './lib/routes/HeadlineNews/CreatorRoute.js';
 import ContentRoute from './lib/routes/HeadlineNews/ContentRoute.js';
+import VideoRoute from './lib/routes/Video_Route/VideoRoute.js'
 
 
 dotenv.config();
@@ -16,7 +17,11 @@ const port = process.env.PORT || 5000;
 await initializeApp();
 
 // Middleware
-app.use(express.json());
+// app.use(express.json());
+
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ extended: true, limit: '100mb' }));
+
 app.use(cors({
   origin: 'http://localhost:3000',//CREATOR_FRONTEND_URL
   credentials: true
@@ -25,6 +30,7 @@ app.use(cors({
 // Routes
 app.use('/api/creators', CreatorRoute);
 app.use('/api/content', ContentRoute);
+app.use('/api/videos', VideoRoute);
 
 
 // MongoDB connection
