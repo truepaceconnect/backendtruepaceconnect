@@ -6,6 +6,7 @@ import { initializeApp } from './FirebaseAdmin.js';
 import CreatorRoute from './lib/routes/HeadlineNews/CreatorRoute.js';
 import ContentRoute from './lib/routes/HeadlineNews/ContentRoute.js';
 import VideoRoute from './lib/routes/Video_Route/VideoRoute.js'
+import ArticleRoute from './lib/routes/Article_Route/ArticleRoute.js'
 
 
 dotenv.config();
@@ -31,7 +32,7 @@ app.use(cors({
 app.use('/api/creators', CreatorRoute);
 app.use('/api/content', ContentRoute);
 app.use('/api/videos', VideoRoute);
-
+app.use('/api/articles', ArticleRoute);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO, {
