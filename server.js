@@ -7,6 +7,7 @@ import CreatorRoute from './lib/routes/HeadlineNews/CreatorRoute.js';
 import ContentRoute from './lib/routes/HeadlineNews/ContentRoute.js';
 import VideoRoute from './lib/routes/Video_Route/VideoRoute.js'
 import ArticleRoute from './lib/routes/Article_Route/ArticleRoute.js'
+import AnnouncementRoute from './lib/routes/Announcement_Route/AnnouncementRoute.js'
 
 
 dotenv.config();
@@ -17,8 +18,7 @@ const port = process.env.PORT || 5000;
 // Initialize Firebase before middleware
 await initializeApp();
 
-// Middleware
-// app.use(express.json());
+
 
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true, limit: '100mb' }));
@@ -33,6 +33,7 @@ app.use('/api/creators', CreatorRoute);
 app.use('/api/content', ContentRoute);
 app.use('/api/videos', VideoRoute);
 app.use('/api/articles', ArticleRoute);
+app.use('/api/announcements', AnnouncementRoute);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO, {
